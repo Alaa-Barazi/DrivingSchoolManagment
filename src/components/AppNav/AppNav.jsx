@@ -13,6 +13,11 @@ function AppNav() {
           <NavLink to="/AddStudent">Add student</NavLink>
         </li>
         <li>
+        <NavLink to="/Profile" >
+        My Profile
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/Login" className={styles.ctaLink}>
             Login
           </NavLink>

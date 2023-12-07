@@ -52,6 +52,7 @@ const AllTeachers = [
     Name: "knkbnl",
     Password: "Admin",
     PhoneNumber: "0504337676",
+    Description: "..."
   },
 ];
 function App() {
@@ -90,6 +91,7 @@ function App() {
             element={<AddStudent onAdd={handleAddStudent} />}
           />
         <Route path="Login" element={<TeacherSignIn />}/>
+        <Route path="Profile" element={<TeacherProfile />}/>
           <Route path="*" element={<Homepage />} />
         </Routes>
       </BrowserRouter>
