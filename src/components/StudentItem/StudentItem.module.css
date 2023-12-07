@@ -1,0 +1,95 @@
+.container {
+  color: black;
+  display: flex;
+  width: 60%;
+  margin: 20px;
+  font-size: 20px;
+  padding: 50px;
+  background-color: aliceblue;
+}
+.profileImg {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.btnDelete {
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: lightslategray;
+  color: var(--color-light--2);
+  font-size: 3rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnDelete:hover {
+  background-color: rgb(201, 28, 28);
+}
+
+.btnDetails {
+  padding: 0rem 3rem;
+  aspect-ratio: 4;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+  cursor: pointer;
+  text-align: center;
+  background-color: lightskyblue;
+ text-decoration: none;
+}
+
+.btnAdd {
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: blue;
+  color: var(--color-light--2);
+  font-size: 2rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnPay {
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: green;
+  color: var(--color-light--2);
+  font-size: 2rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnGroup {
+  position: absolute;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-left: 40%;
+}
+
+.container strong {
+  color: rgb(220, 18, 18);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.container p {
+  color: blue;
+  font-weight: 500;
+}
+
+.container h3 {
+  text-transform: uppercase;
+}
