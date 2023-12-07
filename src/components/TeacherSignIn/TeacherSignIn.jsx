@@ -21,7 +21,11 @@ function TeacherSignIn() {
   const [{ id, password, error }, dispatch] = useReducer(reducer, initialState);
   function handleSubmit() {}
   return (
-    <div className={styles.container} style={{ marginTop: "70px" }}>
+   
+    <div
+      className={styles.container}
+      style={{ marginTop: "70px" }}
+    >
       <form>
         <center>
           <h2 className={styles.title}>Sign in</h2>{" "}
@@ -65,6 +69,7 @@ function TeacherSignIn() {
         </div>
       </form>
     </div>
+   
   );
 }
 
