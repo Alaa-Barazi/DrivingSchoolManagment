@@ -10,6 +10,7 @@ import StudentList from "./components/StudentsList/StudentsList";
 import Test from "./components/test";
 import NewPayment from "./components/NewPayment/NewPayment";
 import TeacherSignIn from "./components/TeacherSignIn/TeacherSignIn";
+import EditProfile from "./components/EditProfile/EditProfile";
 const RegisterPay = 130;
 const AllStudents = [
   {
@@ -52,7 +53,7 @@ const AllTeachers = [
     Name: "knkbnl",
     Password: "Admin",
     PhoneNumber: "0504337676",
-    Description: "..."
+    Description: "ghyj",
   },
 ];
 function App() {
@@ -85,13 +86,14 @@ function App() {
             path="Students/:id"
             element={<StudentDetails student={students[0]} />}
           />
-          
+
           <Route
             path="AddStudent"
             element={<AddStudent onAdd={handleAddStudent} />}
           />
-        <Route path="Login" element={<TeacherSignIn />}/>
-        <Route path="Profile" element={<TeacherProfile />}/>
+          <Route path="Login" element={<TeacherSignIn />} />
+          <Route path="Profile" element={<TeacherProfile teacher={teachers[0]}/>} />
+          <Route path="Profile/:id" element={<EditProfile />} />
           <Route path="*" element={<Homepage />} />
         </Routes>
       </BrowserRouter>

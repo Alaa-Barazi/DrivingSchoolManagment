@@ -74,7 +74,6 @@
 }
 
 .container {
- 
   width: 50%;
   display: flex;
   justify-content: center;
@@ -90,6 +89,7 @@
   font-weight: 1000;
 }
 .btn {
+  color: black;
   margin-top: 3px;
   background-color: lightskyblue;
   font-size: 1.6rem;
@@ -98,6 +98,8 @@
   padding: 1rem 3rem;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
+  text-transform: none;
 }
 
 .profileImg {

@@ -1,7 +1,8 @@
 import styles from "./TeacherProfile.module.css";
-function TeacherProfile() {
+import { Link } from "react-router-dom";
+function TeacherProfile({ teacher }) {
   return (
-    <div className={styles.container} style={{ marginTop: "90px"}}>
+    <div className={styles.container} style={{ marginTop: "90px" }}>
       <div>
         <img
           src="https://i.imgur.com/bDLhJiP.jpg"
@@ -22,8 +23,9 @@ function TeacherProfile() {
         <center className={styles.totalStudents}>Total Students : X</center>
 
         <center>
-          <button className={styles.btn}>Edit Profile</button>
-          
+          <Link className={styles.btn} to={`${teacher.id}`}>
+            Edit Profile
+          </Link>
         </center>
       </div>
     </div>
