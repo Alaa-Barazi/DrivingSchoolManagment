@@ -7,6 +7,7 @@ const teacher = {
   Password: "Admin",
   PhoneNumber: "0504337676",
   Description: "...",
+  Img: "",
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -32,7 +33,7 @@ function EditProfile() {
   //should pass id not teacher object!!!
   //const { id } = useParams();
 
-  const [{ ID, Name, Password, PhoneNumber, Description }, dispatch] =
+  const [{ ID, Name, Password, PhoneNumber, Description, Img }, dispatch] =
     useReducer(reducer, teacher);
   const navigate = useNavigate();
   function handleStudentUpdate() {
@@ -42,6 +43,7 @@ function EditProfile() {
       Password,
       PhoneNumber,
       Description,
+      Img,
     };
 
     console.log(teacher);

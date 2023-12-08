@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./TeacherSignIn.module.css";
 const initialState = {
   id: "",
@@ -13,13 +14,21 @@ function reducer(state, action) {
       return { ...state, password: action.payload };
     case "setError":
       return { ...state, error: action.payload };
+    case 'reset':
+      return initialState;
     default:
       throw new Error("Unknown type");
   }
 }
 function TeacherSignIn() {
   const [{ id, password, error }, dispatch] = useReducer(reducer, initialState);
-  function handleSubmit() {}
+  const navigate=useNavigate();
+  function handleSubmit() {
+    //check if the user exists
+    dispatch({type:"reset"});
+    navigate ('/Students');
+
+  }
   return (
    
     <div
@@ -28,7 +37,7 @@ function TeacherSignIn() {
     >
       <form>
         <center>
-          <h2 className={styles.title}>Sign in</h2>{" "}
+          <h2 className={styles.title}>Sign In</h2>{" "}
         </center>
         <div>
           <label> ID </label>
@@ -64,7 +73,7 @@ function TeacherSignIn() {
 
         <div>
           <p>
-            Don't have an account? <a href="#!">Sign Up</a>
+            Don't have an account? <Link to='/Register'>Sign Up</Link>
           </p>
         </div>
       </form>

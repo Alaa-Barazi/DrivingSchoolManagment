@@ -11,6 +11,8 @@ import Test from "./components/test";
 import NewPayment from "./components/NewPayment/NewPayment";
 import TeacherSignIn from "./components/TeacherSignIn/TeacherSignIn";
 import EditProfile from "./components/EditProfile/EditProfile";
+import TeacherRegister from "./components/TeacherRegister/TeacherRegister";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 const RegisterPay = 130;
 const AllStudents = [
   {
@@ -54,6 +56,7 @@ const AllTeachers = [
     Password: "Admin",
     PhoneNumber: "0504337676",
     Description: "ghyj",
+    Img:""
   },
 ];
 function App() {
@@ -92,9 +95,10 @@ function App() {
             element={<AddStudent onAdd={handleAddStudent} />}
           />
           <Route path="Login" element={<TeacherSignIn />} />
+          <Route path="Register" element={<TeacherRegister />} />
           <Route path="Profile" element={<TeacherProfile teacher={teachers[0]}/>} />
           <Route path="Profile/:id" element={<EditProfile />} />
-          <Route path="*" element={<Homepage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>

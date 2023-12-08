@@ -1,0 +1,26 @@
+.container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    color: black;
+    font-size: 18px;
+  }
+  
+  .title {
+    font-size: 30px;
+    margin-bottom: 5px;
+    color: lightskyblue;
+    font-weight: 1000;
+  }
+  .btn {
+    margin-top: 3px;
+    background-color: lightskyblue;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

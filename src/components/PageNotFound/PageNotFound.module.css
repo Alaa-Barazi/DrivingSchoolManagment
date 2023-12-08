@@ -1,0 +1,22 @@
+.container {
+  margin-top: 150px;
+  color: black;
+}
+.container img {
+  width: auto;
+  height: auto;
+
+}
+.btn {
+color:black;
+  margin-top: 100px;
+  background-color: lightskyblue;
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+ 
+}
