@@ -1,12 +1,11 @@
 import { useState } from "react";
 import styles from "./FilterStudents.module.css";
-import StudentItem from "../StudentItem/StudentItem";
 function FilterStudents({ isOpen, onClose, onApplyFilter }) {
   const [filters, setFilters] = useState({
     carType: "",
     lessonProgress: "",
     location: "",
-    totalLessonsCompleted: "",
+    totalLessonsCompleted: 0,
   });
 
   const handleFilterChange = () => {
@@ -18,9 +17,14 @@ function FilterStudents({ isOpen, onClose, onApplyFilter }) {
       carType: "",
       lessonProgress: "",
       location: "",
-      totalLessonsCompleted: "",
+      totalLessonsCompleted: 0,
     });
-    onApplyFilter(""); // Apply an empty filter to show all students
+    onApplyFilter({
+      carType: "",
+      lessonProgress: "",
+      location: "",
+      totalLessonsCompleted: 0,
+    });
     onClose();
   };
 
@@ -83,7 +87,7 @@ function FilterStudents({ isOpen, onClose, onApplyFilter }) {
                 onChange={(e) =>
                   setFilters({
                     ...filters,
-                    totalLessonsCompleted: e.target.value,
+                    totalLessonsCompleted: Number(e.target.value),
                   })
                 }
               />

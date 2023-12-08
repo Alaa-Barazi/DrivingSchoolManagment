@@ -15,3 +15,9 @@
 .openFilterButton:hover {
   background-color: dodgerblue;
 }
+.error {
+  margin-top: 10%;
+  color: brown;
+  font-size: 32px;
+  text-align: center;
+}
