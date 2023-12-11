@@ -4,6 +4,7 @@ import styles from "./StudentItem.module.css";
 import NewLesson from "../NewLesson/NewLesson";
 import DeleteStudent from "../DeleteStudent/DeleteStudent";
 import NewPayment from "../NewPayment/NewPayment";
+
 function StudentItem({ student, onUpdate, onDelete, onPayment }) {
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -39,7 +40,7 @@ function StudentItem({ student, onUpdate, onDelete, onPayment }) {
             &#10010;
           </button>
           <button className={styles.btnPay} onClick={() => setShowPay(true)}>
-          &#36; 
+            &#36;
           </button>
           <Link className={styles.btnDetails} to={`${student.ID}`}>
             details
@@ -63,12 +64,12 @@ function StudentItem({ student, onUpdate, onDelete, onPayment }) {
           show={showDelete}
           setShow={setShowDelete}
           onConfirmation={onDelete}
-          studentID={student.ID}
+          studentID={student.id}
         />
       )}
       {showPay && (
         <NewPayment
-          ID={student.ID}
+          ID={student.id}
           updatePay={onPayment}
           show={showPay}
           setShow={setShowPay}

@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": "123",
+      "Name": "alaa barazi",
+      "StartDate": "2023-12-15",
+      "BDate": "2023-11-27",
+      "NoLessons": "10",
+      "location": "rehanyia",
+      "CarType": ""
+    },
+    {
+      "id": "14227",
+      "Name": "alaa barazi",
+      "StartDate": "2023-12-02",
+      "BDate": "2023-12-22",
+      "NoLessons": "10",
+      "location": "rehanyia",
+      "CarType": ""
+    }
+  ]
+}

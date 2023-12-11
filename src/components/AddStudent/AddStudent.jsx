@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddStudent.module.css";
+import { useStudents } from "../../context/StudentsContext";
 const initialState = {
   id: "",
   name: "",
@@ -34,6 +35,7 @@ function reducer(state, action) {
   }
 }
 function AddStudent({ onAdd }) {
+  const { createStudent } = useStudents();
   const [
     { id, name, lessons, startDate, bDate, location, carType, phoneNumber },
     dispatch,
@@ -42,7 +44,7 @@ function AddStudent({ onAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
     const newStd = {
-      ID: id,
+      id,
       Name: name,
       StartDate: startDate,
       BDate: bDate,
@@ -50,7 +52,7 @@ function AddStudent({ onAdd }) {
       location,
       CarType: carType,
     };
-    onAdd(newStd);
+    createStudent(newStd);
     navigate("/Students");
   }
   return (

@@ -1,13 +1,23 @@
 //import "bootstrap/dist/css/bootstrap.css";
+import { useStudents } from "../../context/StudentsContext";
 import styles from "./DeleteStudent.module.css";
 
-function DeleteStudent({ show, setShow, onConfirmation, studentID }) {
+function DeleteStudent({ show, setShow, studentID }) {
+  const {
+    error,
+    getStudent,
+    createStudent,
+    updateStudent,
+    deleteStudent,
+    dispatch,
+  } = useStudents();
   function handleClose() {
     setShow(false);
   }
-  function handleRemove() {
-    setShow(false);
-    onConfirmation(studentID);
+  async function handleRemove() {
+    // setShow(false);
+    //  await getStudent(studentID);
+    await deleteStudent(studentID);
   }
   return (
     <div className={`container ${show ? "" : "hidden"}`} onClick={handleClose}>

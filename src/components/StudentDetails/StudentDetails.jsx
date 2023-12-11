@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./StudentDetails.module.css";
 import Button from "../Button/Button";
-import { useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 function StudentDetails({ student }) {
   const navigate = useNavigate();
   const { id } = useParams();

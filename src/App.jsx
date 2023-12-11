@@ -1,19 +1,18 @@
 import { useState } from "react";
-import StudentItem from "./components/StudentItem/StudentItem";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import AppNav from "./components/AppNav/AppNav";
 import TeacherProfile from "./components/TeacherProfile/TeacherProfile";
 import AddStudent from "./components/AddStudent/AddStudent";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage/Homapage";
 import StudentDetails from "./components/StudentDetails/StudentDetails";
 import StudentList from "./components/StudentsList/StudentsList";
-import Test from "./components/Test";
-import NewPayment from "./components/NewPayment/NewPayment";
 import TeacherSignIn from "./components/TeacherSignIn/TeacherSignIn";
 import EditProfile from "./components/EditProfile/EditProfile";
 import TeacherRegister from "./components/TeacherRegister/TeacherRegister";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import FilterStudents from "./components/FilterStudents/FilterStudents";
+import { StudentsProvider } from "./context/StudentsContext";
+
 const RegisterPay = 130;
 const AllStudents = [
   {
@@ -97,37 +96,33 @@ function App() {
   }
   return (
     <>
-      <BrowserRouter>
-        <AppNav setShow={setShowPay} />
-        <Routes>
-          <Route index element={<Homepage />} />
+      <StudentsProvider>
+        <BrowserRouter>
+          <AppNav setShow={setShowPay} />
+          <Routes>
+            <Route index element={<Homepage />} />
+            <Route path="/Students" element={<StudentList />} />
+            {/* <StudentList students={students} setStudents={setStudents} /> */}
+            <Route
+              path="Students/:id"
+              element={<StudentDetails student={students[0]} />}
+            />
 
-          <Route
-            path="Students"
-            element={
-              <StudentList students={students} setStudents={setStudents} />
-            }
-          />
-          {/* <StudentList students={students} setStudents={setStudents} /> */}
-          <Route
-            path="Students/:id"
-            element={<StudentDetails student={students[0]} />}
-          />
-
-          <Route
-            path="AddStudent"
-            element={<AddStudent onAdd={handleAddStudent} />}
-          />
-          <Route path="Login" element={<TeacherSignIn />} />
-          <Route path="Register" element={<TeacherRegister />} />
-          <Route
-            path="Profile"
-            element={<TeacherProfile teacher={teachers[0]} />}
-          />
-          <Route path="Profile/:id" element={<EditProfile />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route
+              path="AddStudent"
+              element={<AddStudent onAdd={handleAddStudent} />}
+            />
+            <Route path="Login" element={<TeacherSignIn />} />
+            <Route path="Register" element={<TeacherRegister />} />
+            <Route
+              path="Profile"
+              element={<TeacherProfile teacher={teachers[0]} />}
+            />
+            <Route path="Profile/:id" element={<EditProfile />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </StudentsProvider>
     </>
   );
 }
