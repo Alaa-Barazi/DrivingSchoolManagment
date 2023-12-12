@@ -43,8 +43,6 @@ function EditProfile() {
     };
     updateTeacher(teacher);
     updateUser(teacher);
-    //teachers context
-    console.log(teacher);
     navigate("/Profile");
   }
   return (
