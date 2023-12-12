@@ -29,7 +29,7 @@ function StudentsList() {
             .toLowerCase()
             .includes(filters.location.toLowerCase())) &&
         (filters.totalLessonsCompleted === 0 ||
-          student.NoLessons === Number(filters.totalLessonsCompleted))
+          Number(student.NoLessons) === Number(filters.totalLessonsCompleted))
       );
     });
     if (updatedStudents.length === 0) {
@@ -92,6 +92,7 @@ function StudentsList() {
       <h1 className={styles.error}>{`${error} `}</h1>
 
       {/* Student List */}
+      {/* some issue with filtering and displaying the students */}
       {students.map((std) => (
         <StudentItem
           student={std}

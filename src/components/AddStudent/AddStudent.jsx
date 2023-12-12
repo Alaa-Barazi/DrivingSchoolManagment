@@ -9,7 +9,7 @@ const initialState = {
   startDate: "",
   bDate: "",
   location: "",
-  carType: "",
+  carType: "manual",
   phoneNumber: "",
 };
 function reducer(state, action) {
@@ -48,9 +48,11 @@ function AddStudent({ onAdd }) {
       Name: name,
       StartDate: startDate,
       BDate: bDate,
-      NoLessons: lessons,
+      NoLessons: Number(lessons),
       location,
       CarType: carType,
+      TotalPayed: 0,
+      teacher: "teacherId",
     };
     createStudent(newStd);
     navigate("/Students");

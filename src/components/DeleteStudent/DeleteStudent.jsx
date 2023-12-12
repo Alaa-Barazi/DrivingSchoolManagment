@@ -3,14 +3,7 @@ import { useStudents } from "../../context/StudentsContext";
 import styles from "./DeleteStudent.module.css";
 
 function DeleteStudent({ show, setShow, studentID }) {
-  const {
-    error,
-    getStudent,
-    createStudent,
-    updateStudent,
-    deleteStudent,
-    dispatch,
-  } = useStudents();
+  const { deleteStudent } = useStudents();
   function handleClose() {
     setShow(false);
   }

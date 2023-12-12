@@ -62,6 +62,7 @@ function StudentsProvider({ children }) {
     try {
       const res = await fetch(`${BASE_URL}/students/${id}`);
       const data = await res.json();
+      return data;
     } catch (err) {
       dispatch({
         type: "rejected",

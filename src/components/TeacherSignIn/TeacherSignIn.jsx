@@ -1,6 +1,7 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./TeacherSignIn.module.css";
+import { useAuth } from "../../context/AuthContext";
 const initialState = {
   id: "",
   password: "",
@@ -14,7 +15,7 @@ function reducer(state, action) {
       return { ...state, password: action.payload };
     case "setError":
       return { ...state, error: action.payload };
-    case 'reset':
+    case "reset":
       return initialState;
     default:
       throw new Error("Unknown type");
@@ -22,19 +23,24 @@ function reducer(state, action) {
 }
 function TeacherSignIn() {
   const [{ id, password, error }, dispatch] = useReducer(reducer, initialState);
-  const navigate=useNavigate();
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   function handleSubmit() {
     //check if the user exists
-    dispatch({type:"reset"});
-    navigate ('/Students');
-
+    login(id, password);
+    // dispatch({ type: "reset" });
+    // navigate("/Students");
   }
+  useEffect(
+    function () {
+      if (isAuthenticated) {
+        navigate("/Students", { replace: true });
+      }
+    },
+    [isAuthenticated, navigate]
+  );
   return (
-   
-    <div
-      className={styles.container}
-      style={{ marginTop: "70px" }}
-    >
+    <div className={styles.container} style={{ marginTop: "70px" }}>
       <form>
         <center>
           <h2 className={styles.title}>Sign In</h2>{" "}
@@ -66,19 +72,18 @@ function TeacherSignIn() {
 
         <span className="text-danger">{error}</span>
         <center>
-          <button type="button" onClick={handleSubmit} className={styles.btn}>
+          <button type="button" className={styles.btn} onClick={handleSubmit}>
             Sign in
           </button>
         </center>
 
         <div>
           <p>
-            Don't have an account? <Link to='/Register'>Sign Up</Link>
+            Don't have an account? <Link to="/Register">Sign Up</Link>
           </p>
         </div>
       </form>
     </div>
-   
   );
 }
 

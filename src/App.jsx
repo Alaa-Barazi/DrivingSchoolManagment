@@ -12,6 +12,8 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import TeacherRegister from "./components/TeacherRegister/TeacherRegister";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import { StudentsProvider } from "./context/StudentsContext";
+import { TeachersProvider } from "./context/TeachersContext";
+import { AuthProvider } from "./context/AuthContext";
 
 const RegisterPay = 130;
 const AllStudents = [
@@ -96,33 +98,37 @@ function App() {
   }
   return (
     <>
-      <StudentsProvider>
-        <BrowserRouter>
-          <AppNav setShow={setShowPay} />
-          <Routes>
-            <Route index element={<Homepage />} />
-            <Route path="/Students" element={<StudentList />} />
-            {/* <StudentList students={students} setStudents={setStudents} /> */}
-            <Route
-              path="Students/:id"
-              element={<StudentDetails student={students[0]} />}
-            />
+      <TeachersProvider>
+        <AuthProvider>
+          <StudentsProvider>
+            <BrowserRouter>
+              <AppNav setShow={setShowPay} />
+              <Routes>
+                <Route index element={<Homepage />} />
+                <Route path="/Students" element={<StudentList />} />
+                {/* <StudentList students={students} setStudents={setStudents} /> */}
+                <Route
+                  path="Students/:id"
+                  element={<StudentDetails student={students[0]} />}
+                />
 
-            <Route
-              path="AddStudent"
-              element={<AddStudent onAdd={handleAddStudent} />}
-            />
-            <Route path="Login" element={<TeacherSignIn />} />
-            <Route path="Register" element={<TeacherRegister />} />
-            <Route
-              path="Profile"
-              element={<TeacherProfile teacher={teachers[0]} />}
-            />
-            <Route path="Profile/:id" element={<EditProfile />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </StudentsProvider>
+                <Route
+                  path="AddStudent"
+                  element={<AddStudent onAdd={handleAddStudent} />}
+                />
+                <Route path="Login" element={<TeacherSignIn />} />
+                <Route path="Register" element={<TeacherRegister />} />
+                <Route
+                  path="Profile"
+                  element={<TeacherProfile teacher={teachers[0]} />}
+                />
+                <Route path="Profile/:id" element={<EditProfile />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </StudentsProvider>
+        </AuthProvider>
+      </TeachersProvider>
     </>
   );
 }

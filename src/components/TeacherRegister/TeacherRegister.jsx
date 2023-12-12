@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import styles from "./TeacherRegister.module.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useTeachers } from "../../context/TeachersContext";
 const initialState = {
   ID: "",
   Name: "",
@@ -24,7 +25,7 @@ function reducer(state, action) {
     case "setImg":
       return { ...state, Img: action.payload };
     case "reset":
-        return initialState;
+      return initialState;
     default:
       throw new Error("Unknown action");
   }
@@ -32,7 +33,8 @@ function reducer(state, action) {
 function TeacherRegister() {
   const [{ ID, Name, Password, PhoneNumber, Description, Img }, dispatch] =
     useReducer(reducer, initialState);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { createTeacher, isLoading } = useTeachers();
   function handleSubmit(e) {
     e.preventDefault();
     const newTeacher = {
@@ -43,9 +45,9 @@ function TeacherRegister() {
       Description,
       Img,
     };
-    console.log(newTeacher);
-    dispatch({type:"reset"});
-    navigate('/Login');
+    createTeacher(newTeacher);
+    dispatch({ type: "reset" });
+    navigate("/Login");
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -134,11 +136,11 @@ function TeacherRegister() {
           </div>
 
           <center>
-            
             <button className={styles.btn}>Sign Up</button>
-            &nbsp;  &nbsp;
-            <div>have an account?
-            <Link to='/Login'> Sign in</Link> 
+            &nbsp; &nbsp;
+            <div>
+              have an account?
+              <Link to="/Login"> Sign in</Link>
             </div>
           </center>
         </div>
