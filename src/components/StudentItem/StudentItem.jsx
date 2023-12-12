@@ -5,7 +5,8 @@ import NewLesson from "../NewLesson/NewLesson";
 import DeleteStudent from "../DeleteStudent/DeleteStudent";
 import NewPayment from "../NewPayment/NewPayment";
 
-function StudentItem({ student, onUpdate, onDelete, onPayment }) {
+function StudentItem({ student}) {
+
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showPay, setShowPay] = useState(false);
@@ -55,7 +56,6 @@ function StudentItem({ student, onUpdate, onDelete, onPayment }) {
           show={showAdd}
           setShow={setShowAdd}
           handleClose={setShowAdd}
-          onUpdate={onUpdate}
         />
       )}
 
@@ -63,14 +63,12 @@ function StudentItem({ student, onUpdate, onDelete, onPayment }) {
         <DeleteStudent
           show={showDelete}
           setShow={setShowDelete}
-          onConfirmation={onDelete}
           studentID={student.id}
         />
       )}
       {showPay && (
         <NewPayment
           ID={student.id}
-          updatePay={onPayment}
           show={showPay}
           setShow={setShowPay}
         />

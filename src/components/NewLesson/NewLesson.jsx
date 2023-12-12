@@ -1,11 +1,17 @@
+import { useStudents } from "../../context/StudentsContext";
 import Button from "../Button/Button";
 import styles from "./NewLesson.module.css";
 import { useState } from "react";
-function NewLesson({ student, show, setShow, handleClose, onUpdate }) {
+function NewLesson({ student, show, setShow, handleClose }) {
+  const { updateStudent } = useStudents();
   const [lesson, setLesson] = useState(1);
   function handleModalClose() {
     handleClose(false);
-    onUpdate(student.ID, lesson);
+    const UpdatedDtd = {
+      ...student,
+      NoLessons: student.NoLessons + lesson,
+    };
+    updateStudent(UpdatedDtd);
   }
   return (
     <div className={`container ${show ? "" : "hidden"}`}>
@@ -55,7 +61,7 @@ function NewLesson({ student, show, setShow, handleClose, onUpdate }) {
               >
                 Close
               </button>
-             
+
               <button onClick={handleModalClose}>Save Changes</button>
             </div>
           </div>

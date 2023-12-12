@@ -1,16 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./NewPayment.module.css";
 import { useState } from "react";
-function NewPayment({ ID, updatePay, show, setShow }) {
+import { useStudents } from "../../context/StudentsContext";
+function NewPayment({ ID, show, setShow }) {
   const [amount, setAmount] = useState(0);
   const navigate = useNavigate();
-  function handleClose() {
+  const { updateStudent, getStudent } = useStudents();
+  async function handleModalClose() {
     setShow(false);
-    setAmount(0);
-  }
-  function handleModalClose() {
-    setShow(false);
-    if (amount !== 0) updatePay(ID, amount);
+    if (amount !== 0) {
+      const std = await getStudent(ID);
+      const updatedStd = {
+        ...std,
+        TotalPayed: std.TotalPayed + amount,
+      };
+      updateStudent(updatedStd);
+      //updatePay(ID, amount);
+    }
     setAmount(0);
     navigate("/Students");
   }
@@ -32,7 +38,7 @@ function NewPayment({ ID, updatePay, show, setShow }) {
 
             <div className={styles.Mbody}>
               <form>
-              <div>
+                <div>
                   <label>Student ID</label>
                   <input
                     type="text"
@@ -48,7 +54,7 @@ function NewPayment({ ID, updatePay, show, setShow }) {
                     type="text"
                     autoFocus
                     value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => setAmount(Number(e.target.value))}
                   />
                 </div>
               </form>

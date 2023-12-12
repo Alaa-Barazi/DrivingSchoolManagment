@@ -1,29 +1,31 @@
+import { useAuth } from "../../context/AuthContext";
+import { useStudents } from "../../context/StudentsContext";
 import styles from "./TeacherProfile.module.css";
 import { Link } from "react-router-dom";
 function TeacherProfile({ teacher }) {
+  const { user } = useAuth();
+  const { numStudentsForUser: numStd } = useStudents();
+
   return (
     <div className={styles.container} style={{ marginTop: "90px" }}>
       <div>
         <img
-          src="https://i.imgur.com/bDLhJiP.jpg"
+          src={user.Img}
           width="100"
-          class={styles.profileImg}
+          className={styles.profileImg}
           alt="teacherimg"
         />
       </div>
 
       <div>
-        <h5 className={styles.title}>Alexender Schidmt</h5>
-        <p className={styles.description}>
-          Experienced and patient driving instructor dedicated to helping
-          learners develop safe and confident driving skills. With a passion for
-          road safety and a comprehensive understanding of traffic regulations,
-          I provide personalized instruction tailored to individual needs.
-        </p>
-        <center className={styles.totalStudents}>Total Students : X</center>
+        <h5 className={styles.title}>{user.Name}</h5>
+        <p className={styles.description}>{user.Description}</p>
+        <center className={styles.totalStudents}>
+          Total Students : {numStd}
+        </center>
 
         <center>
-          <Link className={styles.btn} to={`${teacher.id}`}>
+          <Link className={styles.btn} to={`${user.id}`}>
             Edit Profile
           </Link>
         </center>

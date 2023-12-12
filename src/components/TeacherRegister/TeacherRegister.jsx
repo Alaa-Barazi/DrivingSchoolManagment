@@ -38,7 +38,7 @@ function TeacherRegister() {
   function handleSubmit(e) {
     e.preventDefault();
     const newTeacher = {
-      ID,
+      id: ID,
       Name,
       Password,
       PhoneNumber,

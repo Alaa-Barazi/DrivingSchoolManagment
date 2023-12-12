@@ -5,8 +5,6 @@ const initialState = {
   teachers: "",
   isLoading: false,
   error: "",
-  user: null,
-  isAuthenticated: false,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -27,10 +25,6 @@ function reducer(state, action) {
         teachers: state.teachers.filter((tch) => tch.id !== action.payload),
         isLoading: false,
       };
-    case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
-    case "logout":
-      return { ...state, user: null, isAuthenticated: false };
     case "rejected":
       return { ...state, error: action.payload, isLoading: false };
     default:

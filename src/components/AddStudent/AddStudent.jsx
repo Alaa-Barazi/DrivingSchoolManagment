@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddStudent.module.css";
 import { useStudents } from "../../context/StudentsContext";
+import { useAuth } from "../../context/AuthContext";
 const initialState = {
   id: "",
   name: "",
@@ -36,6 +37,7 @@ function reducer(state, action) {
 }
 function AddStudent({ onAdd }) {
   const { createStudent } = useStudents();
+  const { user } = useAuth();
   const [
     { id, name, lessons, startDate, bDate, location, carType, phoneNumber },
     dispatch,
@@ -52,7 +54,7 @@ function AddStudent({ onAdd }) {
       location,
       CarType: carType,
       TotalPayed: 0,
-      teacher: "teacherId",
+      teacher: user.id,
     };
     createStudent(newStd);
     navigate("/Students");

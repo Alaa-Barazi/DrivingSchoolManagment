@@ -12,13 +12,14 @@ function reducer(state, action) {
     case "login":
       return { ...state, user: action.payload, isAuthenticated: true };
     case "logout":
-      return { ...state, user: null, isAuthenticated: true };
+      return { ...state, user: null, isAuthenticated: false };
     default:
       throw new Error("Unknown action");
   }
 }
 function AuthProvider({ children }) {
   const { teachers } = useTeachers();
+  
   const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
@@ -28,7 +29,6 @@ function AuthProvider({ children }) {
     const teacher = teachers.find(
       (tch) => tch.id === id && tch.Password === password
     );
-    console.log(teacher);
     if (teacher === undefined) return;
     else dispatch({ type: "login", payload: teacher });
   }
