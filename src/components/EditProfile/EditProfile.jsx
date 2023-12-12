@@ -1,12 +1,14 @@
 import { useReducer } from "react";
 import styles from "./EditProfile.module.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTeachers } from "../../context/TeachersContext";
+import { useAuth } from "../../context/AuthContext";
 const teacher = {
-  ID: "123456",
-  Name: "knkbnl",
-  Password: "Admin",
-  PhoneNumber: "0504337676",
-  Description: "...",
+  ID: "",
+  Name: "",
+  Password: "",
+  PhoneNumber: "",
+  Description: "",
   Img: "",
 };
 function reducer(state, action) {
@@ -24,30 +26,26 @@ function reducer(state, action) {
   }
 }
 function EditProfile() {
-  // ID: "123456",
-  // Name: "knkbnl",
-  // Password: "Admin",
-  // PhoneNumber: "0504337676",
-  // Description: "..."
-  //maybe it will receive later and id int the url instead of the teacher itself
-  //should pass id not teacher object!!!
-  //const { id } = useParams();
+  const { user, updateUser } = useAuth();
+  const [{ id, Name, Password, PhoneNumber, Description, Img }, dispatch] =
+    useReducer(reducer, user);
 
-  const [{ ID, Name, Password, PhoneNumber, Description, Img }, dispatch] =
-    useReducer(reducer, teacher);
   const navigate = useNavigate();
-  function handleStudentUpdate() {
+  const { updateTeacher } = useTeachers();
+  function handleTeacherUpdate() {
     const teacher = {
-      ID,
+      id,
       Name,
       Password,
       PhoneNumber,
       Description,
       Img,
     };
-
+    updateTeacher(teacher);
+    updateUser(teacher);
+    //teachers context
     console.log(teacher);
-    navigate("/");
+    navigate("/Profile");
   }
   return (
     <div className={styles.container} style={{ marginTop: "70px" }}>
@@ -59,7 +57,7 @@ function EditProfile() {
           <span>
             <i>ID</i>
           </span>
-          <input type="text" value={ID} readOnly />
+          <input type="text" value={id} readOnly />
         </div>
 
         <div>
@@ -114,7 +112,7 @@ function EditProfile() {
             &larr; Back
           </button>
           &nbsp;
-          <button className={styles.btn} onClick={handleStudentUpdate}>
+          <button className={styles.btn} onClick={handleTeacherUpdate}>
             Save
           </button>
         </div>

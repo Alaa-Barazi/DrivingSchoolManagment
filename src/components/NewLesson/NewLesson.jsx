@@ -1,5 +1,4 @@
 import { useStudents } from "../../context/StudentsContext";
-import Button from "../Button/Button";
 import styles from "./NewLesson.module.css";
 import { useState } from "react";
 function NewLesson({ student, show, setShow, handleClose }) {
@@ -61,7 +60,6 @@ function NewLesson({ student, show, setShow, handleClose }) {
               >
                 Close
               </button>
-
               <button onClick={handleModalClose}>Save Changes</button>
             </div>
           </div>

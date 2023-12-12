@@ -19,7 +19,7 @@ function reducer(state, action) {
 }
 function AuthProvider({ children }) {
   const { teachers } = useTeachers();
-  
+
   const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
@@ -34,6 +34,9 @@ function AuthProvider({ children }) {
   function logout() {
     dispatch({ type: "logout" });
   }
+  function updateUser(newUser) {
+    dispatch({ type: "login", payload: newUser });
+  }
   return (
     <AuthContext.Provider
       value={{
@@ -41,6 +44,7 @@ function AuthProvider({ children }) {
         isAuthenticated,
         login,
         logout,
+        updateUser
       }}
     >
       {children}

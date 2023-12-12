@@ -18,7 +18,15 @@ function reducer(state, action) {
         teachers: [...state.teachers, action.payload],
         isLoading: false,
       };
-    case "teachers/deleted":
+    case "teacher/updated":
+      return {
+        ...state,
+        teachers: state.teachers.map((tch) =>
+          tch.id === action.payload.id ? action.payload : tch
+        ),
+        isLoading: false,
+      };
+    case "teacher/deleted":
       //pass ID as action payload
       return {
         ...state,
@@ -87,6 +95,26 @@ function TeachersProvider({ children }) {
     }
   }
 
+  async function updateTeacher(updatedTeacher) {
+    dispatch({ type: "loading" });
+    try {
+      const res = await fetch(`${BASE_URL}/teachers/${updatedTeacher.id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedTeacher),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      dispatch({ type: "teacher/updated", payload: data });
+      //dispatch ypdate
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: "There was an error updating teacher...",
+      });
+    }
+  }
   return (
     <TeachersContext.Provider
       value={{
@@ -94,7 +122,8 @@ function TeachersProvider({ children }) {
         isLoading,
         error,
         getTeacher,
-        createTeacher
+        createTeacher,
+        updateTeacher
       }}
     >
       {children}
