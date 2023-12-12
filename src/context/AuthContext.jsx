@@ -25,7 +25,6 @@ function AuthProvider({ children }) {
     initialState
   );
   function login(id, password) {
-    console.log(id, password);
     const teacher = teachers.find(
       (tch) => tch.id === id && tch.Password === password
     );

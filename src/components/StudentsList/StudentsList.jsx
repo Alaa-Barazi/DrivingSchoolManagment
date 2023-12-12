@@ -3,6 +3,7 @@ import styles from "./StudentsList.module.css";
 import StudentItem from "../StudentItem/StudentItem";
 import FilterStudents from "../FilterStudents/FilterStudents";
 import { useStudents } from "../../context/StudentsContext";
+import Spinner from "../Spinner/Spinner";
 const Lessons_beginner = 10;
 const Lessons_intermediate = 20;
 const Lessons_advanced = 20;
@@ -77,6 +78,7 @@ function StudentsList() {
 
   return (
     <div>
+      {isLoading && <Spinner />}
       <button
         onClick={() => setFilterModalOpen(true)}
         className={styles.openFilterButton}
